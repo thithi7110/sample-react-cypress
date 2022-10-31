@@ -1,4 +1,4 @@
-
+/// <reference types="cypress" />
 //AddNumコンポーネントのテスト
 import React, { EventHandler } from 'react'
 import AddNum from '../../src/AddNum'

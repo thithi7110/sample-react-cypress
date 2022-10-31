@@ -1,8 +1,33 @@
+/// <reference types="cypress" />
 //Adressコンポーネントのテスト
 import React, { EventHandler } from 'react'
 import Address from '../../src/Address'
 
 describe('住所表示', () => {
+    beforeEach(() => {
+        // スコープ内の各テストごとに実行前に実行
+
+        cy.intercept('GET', 'http://localhost:8085/api/zip?zipcode*', {
+            statusCode: 200,
+            body: {
+                "message": null,
+                "results": [
+                    {
+                        "address1": "沖縄県",
+                        "address2": "中頭郡北中城村",
+                        "address3": "大城",
+                        "kana1": "ｵｷﾅﾜｹﾝ",
+                        "kana2": "ﾅｶｶﾞﾐｸﾞﾝｷﾀﾅｶｸﾞｽｸｿﾝ",
+                        "kana3": "ｵｵｸﾞｽｸ",
+                        "prefcode": "47",
+                        "zipcode": "9012314"
+                    }
+                ],
+                "status": 200
+            },
+        }).as('getZipInfo');
+    })
+
     it('Adreesに郵便番号を入力すると郵便番号APIから住所を検索し、郵便番号の下に住所を文字として表示する', () => {
         // cy.intercept(
         //     {
@@ -28,13 +53,38 @@ describe('住所表示', () => {
         // ).as('getZipInfo');
         cy.mount(<Address />)
 
-        cy.get('[data-cy=zipcode]').type('9012315').then(() => {
+        cy.get('[data-cy=zipcode]').type('9000024').then(() => {
             // cy.wait('@getZipInfo').then(() => {
             //     cy.get('[data-cy=address1]').should('have.value', "沖縄県");
             // })
             cy.get('[data-cy=address1]').should('have.value', "沖縄県");
 
+            cy.get('[data-cy=zipcode]').blur();
+
         })
+    })
+
+    it('画像比較によるテスト', () => {
+        // cy.intercept(
+        //     'http://localhost:8085/api/zip?zipcode=9000024',
+        // ).as('getZipInfo');
+
+
+        cy.mount(<Address />)
+
+        cy.get('[data-cy=zipcode]').type('9000024');
+        // cy.wait('@getZipInfo').then(() => {
+        //     cy.get('[data-cy=address1]').should('have.value', "沖縄県");
+        // })
+        cy.wait('@getZipInfo').then(() => {
+            cy.get('[data-cy=zipcode]').blur();
+            cy.matchImageSnapshot();
+        });
+
+
+
+
+
     })
 
     // it('Adreesに郵便番号を属性として渡すと郵便番号APIから住所を検索し、郵便番号の下に住所を文字として表示する', () => {

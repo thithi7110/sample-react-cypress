@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cyopen":"cypress open"
+    "cyopen":"cypress open",
+    "start":"nodemon server.js 8085"
   },
   "keywords": [
     "nodejs",

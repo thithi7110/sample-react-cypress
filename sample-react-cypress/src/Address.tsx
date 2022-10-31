@@ -64,7 +64,9 @@ export default function Address(props: Props) {
             <div>
                 <input data-cy='zipcode' value={props.zipcode} onChange={onChange} />
             </div>
+            <div>
             <input data-cy='address1' value={zipInfo.address1} />
+            </div>
             <input data-cy='address2' value={zipInfo.address2} />
             <input data-cy='address3' value={zipInfo.address3} />
             <input data-cy='kana1' value={zipInfo.kana1} />
