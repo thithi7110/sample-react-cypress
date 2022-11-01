@@ -5,7 +5,7 @@ jobs:
   cypress-test:
     runs-on: ubuntu-latest
     steps:
-      -name: CheckOut
-       uses: actions/checkout@v2
-      -name: Cypress run --component --spec ".\cypress\component\Address.cy.tsx"
-       uses: cypress-io/github-action
+      - name: CheckOut
+        uses: actions/checkout@v2
+      - name: Cypress run --component --spec ".\cypress\component\Address.cy.tsx"
+        uses: cypress-io/github-action@v4
