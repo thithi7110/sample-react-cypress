@@ -5,6 +5,7 @@ jobs:
   cypress-test:
     runs-on: ubuntu-latest
     steps:
+      
       - name: CheckOut
         uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -16,4 +17,6 @@ jobs:
       - name: Cypress run --component
         uses: cypress-io/github-action@v4.2.0
         with:
+          install: false
+          component: true
           working-directory: ./sample-react-cypress
