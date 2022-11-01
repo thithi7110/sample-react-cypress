@@ -15,3 +15,5 @@ jobs:
         working-directory: ./sample-react-cypress
       - name: Cypress run --component
         uses: cypress-io/github-action@v4.2.0
+        with:
+          working-directory: ./sample-react-cypress
