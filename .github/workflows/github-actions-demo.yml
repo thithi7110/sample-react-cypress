@@ -8,4 +8,4 @@ jobs:
       - name: CheckOut
         uses: actions/checkout@v2
       - name: Cypress run --component
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@latest
