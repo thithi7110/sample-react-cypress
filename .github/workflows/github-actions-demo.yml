@@ -11,6 +11,6 @@ jobs:
         with:
           node-version: 14.x
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       - name: Cypress run --component
         uses: cypress-io/github-action@v4.2.0
