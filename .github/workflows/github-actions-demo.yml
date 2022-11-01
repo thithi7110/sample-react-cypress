@@ -12,5 +12,6 @@ jobs:
           node-version: 14.x
       - name: Install dependencies
         run: npm install
+        work-directory: ./sample-react-cypress
       - name: Cypress run --component
         uses: cypress-io/github-action@v4.2.0
